@@ -26,6 +26,8 @@ public class GUI extends JFrame {
         vercarnet(carnet);
     }
     
+    
+    
    private void vercarnet(Carnet prueba){
         
         JPanel contenedor = new JPanel();

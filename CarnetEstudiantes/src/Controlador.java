@@ -1,64 +1,66 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class Controlador {
+public class Controlador extends JFrame implements ActionListener {
 
     public String seleccion;
     public int nCarnet;
     final int num = 5;
     public boolean confi = true;
+    JButton ok = new JButton("ok");
+    JTextField seleaccion = new JTextField();
     ArrayList<Carnet> lista = new ArrayList<>();
 
     public void menu() {
-        while (confi == true) {
-            String texto = "1:Iniciar carnets" + "\n";
-            texto += "2:cargar carnets anteriormente guardados" + "\n";
-            texto += "3:añadir carnet" + "\n";
-            texto += "4:modificar un carnet" + "\n";
-            texto += "5:eliminar un carnet" + "\n";
-            texto += "6:ver carnets" + "\n";
-            texto += "7: Eliminar todos los carnets" + "\n";
-            texto += "8:Guardar" + "\n";
-            texto += "9:cerrar programa";
-            seleccion = JOptionPane.showInputDialog(null, texto);
-            switch (seleccion) {
-                case ("1"):
-                    iniciar();
-                    break;
-                case ("2"):
-                    cargar();
-                    break;
-                case ("3"):
-                    añadir();
-                    break;
-                case ("4"):
-                    corregir();
-                    break;
-                case ("5"):
-                    eliminar();
-                    break;
-                case ("6"):
-                    ver();
-                    break;
-                case ("7"):
-                    eliminarTodo();
-                case ("8"):
-                    guardar();
-                    break;
-                case ("9"):
-                    cerrar();
-                    break;
-                default:
-                    System.out.println("si no tiene un cromosoma de mas,por favor seleccione una opcion del menu");
 
-            }
-        }
+
+            // operacion
+            JFrame a = new JFrame();
+            a.setBounds(250, 250, 800, 150);
+
+            ok.setBounds(500, 60, 60, 20);
+            ok.addActionListener(this);
+
+            seleaccion.setBounds(240, 60, 180, 20);
+            a.add(ok);
+            a.add(seleaccion);
+            JPanel menu = new JPanel();
+            JLabel q = new JLabel("1:Iniciar carnets");
+            JLabel w = new JLabel("2:cargar carnets anteriormente guardados");
+            JLabel e = new JLabel("3:añadir carnet");
+            JLabel r = new JLabel("4:modificar un carnet");
+            JLabel t = new JLabel("5:eliminar un carnet");
+            JLabel y = new JLabel("6:ver carnets");
+            JLabel u = new JLabel("7: Eliminar todos los carnets");
+            JLabel i = new JLabel("8:Guardar");
+            JLabel o = new JLabel("9:cerrar programa");
+            menu.add(q);
+            menu.add(w);
+            menu.add(e);
+            menu.add(r);
+            menu.add(t);
+            menu.add(y);
+            menu.add(u);
+            menu.add(i);
+            menu.add(o);
+
+            a.add(menu);
+
+            a.setVisible(true);
+            // fin operacion
     }
 
     public void iniciar() {
@@ -92,11 +94,11 @@ public class Controlador {
     public void guardar() {
 
         try {
-            FileOutputStream fout = new FileOutputStream("./bin/carne.bin");            
-                ObjectOutputStream out = new ObjectOutputStream(fout);
-                out.writeObject(lista);
-                out.close();
-            
+            FileOutputStream fout = new FileOutputStream("./bin/carne.bin");
+            ObjectOutputStream out = new ObjectOutputStream(fout);
+            out.writeObject(lista);
+            out.close();
+
             fout.close();
             JOptionPane.showMessageDialog(null, "done");
         } catch (IOException e) {
@@ -106,16 +108,16 @@ public class Controlador {
     }
 
     public void cargar() {
-        Carnet carnet;
+
         try {
             FileInputStream fin = new FileInputStream("./bin/carne.bin");
             ObjectInputStream reader = new ObjectInputStream(fin);
             lista = (ArrayList) reader.readObject();
-            
+
             reader.close();
             fin.close();
             JOptionPane.showMessageDialog(null, "done");
-            
+
         } catch (IOException | ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, "no se encontro el arcchivo");
 
@@ -167,9 +169,48 @@ public class Controlador {
     public void cerrar() {
         confi = false;
     }
-
     public static void main(String[] args) {
         Controlador a = new Controlador();
         a.menu();
+    }
+
+    
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(ok)) {
+            seleccion = seleaccion.getText();
+            switch (seleccion) {
+                case ("1"):
+                    iniciar();
+                    break;
+                case ("2"):
+                    cargar();
+                    break;
+                case ("3"):
+                    añadir();
+                    break;
+                case ("4"):
+                    corregir();
+                    break;
+                case ("5"):
+                    eliminar();
+                    break;
+                case ("6"):
+                    ver();
+                    break;
+                case ("7"):
+                    eliminarTodo();
+                case ("8"):
+                    guardar();
+                    break;
+                case ("9"):
+                    cerrar();
+                    break;
+                default:
+                    System.out.println("si no tiene un cromosoma de mas,por favor seleccione una opcion del menu");
+
+            }
+        }
     }
 }
