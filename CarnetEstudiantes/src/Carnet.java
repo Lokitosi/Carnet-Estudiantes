@@ -63,7 +63,7 @@ public class Carnet implements Serializable {
 
     public void getimage() {
         JOptionPane.showMessageDialog(null, "seleccione la imagen del estudiante");
-        JFileChooser archivo = new JFileChooser("F:/carnetEsinerror/CarnetEstudiantes/imagenes");
+        JFileChooser archivo = new JFileChooser("./imagenes");
         archivo.showOpenDialog(null);
         File imagen = archivo.getSelectedFile();
         source = imagen.getPath();

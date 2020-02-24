@@ -21,7 +21,7 @@ public class GUI extends JFrame {
     public GUI(Carnet carnet) {
         this.setSize(700,400);
         this.setTitle("Carnet Estudiantil");
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
         this.setLocationRelativeTo(null);
         vercarnet(carnet);
     }
