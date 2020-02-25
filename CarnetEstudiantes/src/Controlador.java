@@ -1,4 +1,5 @@
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -25,42 +26,40 @@ public class Controlador extends JFrame implements ActionListener {
     ArrayList<Carnet> lista = new ArrayList<>();
 
     public void menu() {
+        // Jframe
+        JFrame a = new JFrame();
+        a.setBounds(0, 0, 400, 400);
+        a.setLocationRelativeTo(null);
+        a.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        // Jpanel
+        JPanel menu = new JPanel();
+        menu.setLayout(null);
+        //titulo
+        String titulo = "<HTML><b><h1>Carnets Estudiantiles</h1></b></HTML>";
+        JLabel titulox = new JLabel(titulo);
+        titulox.setBounds(50, 0, 400, 40);
+        menu.add(titulox);
+        // opciones
+        String texto = "<HTML><b>1: Iniciar carnets<br>2: Cargar carnets anteriormente guardados";
+        texto += "<br>3: Añadir carnet<br>4: Modificar un carnet<br>5: Eliminar un carnet";
+        texto += "<br>6: Ver carnets<br>7: Eliminar todos los carnets<br>8:Guardar";
+        texto += "<br>9:Cerrar programa</b></HTML>";
+        JLabel txt = new JLabel(texto);
+        txt.setFont(new Font("arial", Font.BOLD, 15));
+        txt.setBounds(20, 30, 250, 230);
+        menu.add(txt);
+        //boton
+        ok.setBounds(128, 282, 60, 20);
+        ok.addActionListener(this);
+        // campo de texto
+        seleaccion.setBounds(80, 260, 180, 20);
 
+        a.add(ok);
+        a.add(seleaccion);
+        a.add(menu);
 
-            // operacion
-            JFrame a = new JFrame();
-            a.setBounds(250, 250, 800, 150);
-
-            ok.setBounds(500, 60, 60, 20);
-            ok.addActionListener(this);
-
-            seleaccion.setBounds(240, 60, 180, 20);
-            a.add(ok);
-            a.add(seleaccion);
-            JPanel menu = new JPanel();
-            JLabel q = new JLabel("1:Iniciar carnets");
-            JLabel w = new JLabel("2:cargar carnets anteriormente guardados");
-            JLabel e = new JLabel("3:añadir carnet");
-            JLabel r = new JLabel("4:modificar un carnet");
-            JLabel t = new JLabel("5:eliminar un carnet");
-            JLabel y = new JLabel("6:ver carnets");
-            JLabel u = new JLabel("7: Eliminar todos los carnets");
-            JLabel i = new JLabel("8:Guardar");
-            JLabel o = new JLabel("9:cerrar programa");
-            menu.add(q);
-            menu.add(w);
-            menu.add(e);
-            menu.add(r);
-            menu.add(t);
-            menu.add(y);
-            menu.add(u);
-            menu.add(i);
-            menu.add(o);
-
-            a.add(menu);
-
-            a.setVisible(true);
-            // fin operacion
+        a.setVisible(true);
+        // fin operacion
     }
 
     public void iniciar() {
@@ -167,14 +166,14 @@ public class Controlador extends JFrame implements ActionListener {
     }
 
     public void cerrar() {
-        confi = false;
+        System.exit(0);
+
     }
+
     public static void main(String[] args) {
         Controlador a = new Controlador();
         a.menu();
     }
-
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -46,7 +46,7 @@ public class Carnet implements Serializable {
          // codigo con confirmacion de 11 digitos
         while (confi == true) {
             codigo = JOptionPane.showInputDialog("ingrese su codigo");
-            if (codigo.length() == 3) {
+            if (codigo.length() == 11) {
                 confi = false;
             }
         }
