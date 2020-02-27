@@ -1,7 +1,7 @@
 package Logica;
 
 
-import Interfaces.GUI;
+import Interfaces.Gcarnet;
 import java.io.File;
 import java.io.Serializable;
 import javax.swing.JFileChooser;
@@ -16,6 +16,7 @@ public class Carnet implements Serializable {
     private  String source;
     // static = atributo de clase y se aplica para todos los objetos
     public boolean confi = true;
+    
     int imagen;
 
   
@@ -49,7 +50,7 @@ public class Carnet implements Serializable {
          // codigo con confirmacion de 11 digitos
         while (confi == true) {
             codigo = JOptionPane.showInputDialog("ingrese su codigo");
-            if (codigo.length() == 11) {
+            if (codigo.length() == 3) {
                 confi = false;
             }
         }
@@ -59,9 +60,9 @@ public class Carnet implements Serializable {
 
   
 
-    public void visualizar() {
-        
-        GUI prueba = new GUI(this);
+    public void visualizar() {  
+        System.out.println("aaaaaaa mi pixchula");
+        Gcarnet prueba = new Gcarnet(this);
         prueba.setVisible(true);
     }
 
@@ -69,8 +70,8 @@ public class Carnet implements Serializable {
         JOptionPane.showMessageDialog(null, "seleccione la imagen del estudiante");
         JFileChooser archivo = new JFileChooser("./imagenes");
         archivo.showOpenDialog(null);
-        File imagen = archivo.getSelectedFile();
-        source = imagen.getPath();
+        File foto = archivo.getSelectedFile();
+        source = foto.getPath();
     }
 
 }
