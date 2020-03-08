@@ -18,6 +18,11 @@ public class Carnet implements Serializable {
     public boolean confi = true;
     
     int imagen;
+    public Carnet(String nom,String cod,String proy){
+        this.nombre = nom;
+        this.codigo = cod;
+        this.proyecto = proy;
+    }
 
   
 

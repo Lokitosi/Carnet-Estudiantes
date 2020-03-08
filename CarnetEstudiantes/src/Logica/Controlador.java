@@ -24,30 +24,14 @@ public class Controlador {
         Gmenu b = new Gmenu(this);
         b.setVisible(true);
     }
+    
 //metodos
 
-    public void iniciar() {
-        int nume;
-        try {
-            nume = Integer.parseInt(JOptionPane.showInputDialog("cuantos carnets desea crear"));
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "por favor escriba un numero");
-            nume = Integer.parseInt(JOptionPane.showInputDialog("cuantos carnets desea crear"));
-        }
-        for (int b = 0; b < nume; b++) {
-            Carnet a = new Carnet();
-            a.capturar();
-            a.getimage();
-            JOptionPane.showMessageDialog(null, "El estudiante ha sido añadido exitosamente");
-            lista.add(a);
 
-        }
-
-    }
-
-    public void añadir() {
-        Carnet a = new Carnet();
-        a.capturar();
+    public void añadir(String nom,String cod,String proy) {
+        
+        Carnet a = new Carnet(nom,cod,proy);
+        
         a.getimage();
         JOptionPane.showMessageDialog(null, "El estudiante ha sido añadido exitosamente");
         lista.add(a);

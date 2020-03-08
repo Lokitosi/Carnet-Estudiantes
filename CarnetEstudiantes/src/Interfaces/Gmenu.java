@@ -7,19 +7,34 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import Logica.Controlador;
+
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class Gmenu extends JFrame implements ActionListener {
 
+    //elementos necesarios :)
     public boolean confi = true;
-    JButton ok = new JButton("ok");
-    JTextField seleaccion = new JTextField();
-    public String seleccion;
+    // botones
+    JButton cargar = new JButton("Cargar");
+    JButton guardar = new JButton("Guardar");
+    JButton eliminarTodo = new JButton("Eliminar-Todo");
+    JButton añadir = new JButton("añadir");
+    JButton ver = new JButton("Ver carnet");
+    JButton corregir = new JButton("Corregir");
+    JButton eliminar = new JButton("Eliminar");
+
+    //textfields
+    JTextField nombret = new JTextField();
+    JTextField codigot = new JTextField();
+    JTextField proyectot = new JTextField();
+
+    // otras cosas 
     Controlador a = new Controlador();
 
     public Gmenu(Controlador b) {
-        this.setBounds(0, 0, 400, 400);
+        this.setBounds(0, 0, 750, 450);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         crearmenu();
@@ -31,71 +46,106 @@ public class Gmenu extends JFrame implements ActionListener {
         JPanel menu = new JPanel();
         menu.setLayout(null);
         //titulo
-        String titulo = "<HTML><b><h1>Carnets Estudiantiles</h1></b></HTML>";
+        String titulo = "Carnets Estudiantiles";        
         JLabel titulox = new JLabel(titulo);
-        titulox.setBounds(50, 0, 400, 40);
+        titulox.setBounds(120,10, 650, 48);
+        titulox.setFont(new Font("arial", Font.BOLD, 48));
         menu.add(titulox);
-        // opciones
-        String texto = "<HTML><b>1: Iniciar carnets<br>2: Cargar carnets anteriormente guardados";
-        texto += "<br>3: Añadir carnet<br>4: Modificar un carnet<br>5: Eliminar un carnet";
-        texto += "<br>6: Ver carnets<br>7: Eliminar todos los carnets<br>8:Guardar";
-        texto += "<br>9:Cerrar programa</b></HTML>";
-        JLabel txt = new JLabel(texto);
-        txt.setFont(new Font("arial", Font.BOLD, 15));
-        txt.setBounds(20, 30, 250, 230);
-        menu.add(txt);
-        //boton
-        ok.setBounds(128, 282, 60, 20);
-        ok.addActionListener(this);
-        // campo de texto
-        seleaccion.setBounds(80, 260, 180, 20);
-        seleaccion.addActionListener(this);
 
-        this.add(ok);
-        this.add(seleaccion);
+        //Apartado Nombre
+        JLabel nombre = new JLabel("Nombre: ");
+        nombre.setBounds(50, 100, 150, 30);
+        nombre.setFont(new Font("arial", Font.BOLD, 30));
+        menu.add(nombre);
+        nombret.setBounds(200, 100, 400, 30);
+        menu.add(nombret);
+
+        //Apartado Codigo
+        JLabel codigo = new JLabel("Codigo: ");
+        codigo.setBounds(50, 150, 150, 30);
+        codigo.setFont(new Font("arial", Font.BOLD, 30));
+        menu.add(codigo);
+        codigot.setBounds(200, 150, 400, 30);
+        menu.add(codigot);
+
+        //Apartado Proyecto 
+        JLabel proyecto = new JLabel("Proyecto: ");
+        proyecto.setBounds(50, 200, 150, 30);
+        proyecto.setFont(new Font("arial", Font.BOLD, 30));
+        menu.add(proyecto);
+        proyectot.setBounds(200, 200, 400, 30);
+        menu.add(proyectot);
+
+        // Botones
+        cargar.setBounds(20, 300, 100, 30);
+        menu.add(cargar);
+        cargar.addActionListener(this);
+
+        guardar.setBounds(140,300, 100, 30);
+        menu.add(guardar);
+        guardar.addActionListener(this);
+
+        eliminarTodo.setBounds(300, 350, 150, 30);
+        menu.add(eliminarTodo);
+        eliminarTodo.addActionListener(this);
+
+        añadir.setBounds(380, 300, 100, 30);
+        menu.add(añadir);
+        añadir.addActionListener(this);
+
+        ver.setBounds(500, 300, 100, 30);
+        menu.add(ver);
+        ver.addActionListener(this);
+
+        corregir.setBounds(620, 300, 100, 30);
+        menu.add(corregir);
+        corregir.addActionListener(this);
+        
+        eliminar.setBounds(260, 300, 100, 30);
+        menu.add(eliminar);
+        eliminar.addActionListener(this);
+            
+
+
         this.add(menu);
 
         this.setVisible(true);
     }
-// Accion del boton o del textBox :)
+// Accion del boton 
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource().equals(ok) | e.getSource().equals(seleaccion)) {
+        if (e.getSource().equals(cargar)) {
+            a.cargar();
+        }
+        if (e.getSource().equals(guardar)) {
+            a.guardar();
+        }
 
-            seleccion = seleaccion.getText();
-            switch (seleccion) {
-                case ("1"):
-                    a.iniciar();
-                    break;
-                case ("2"):
-                    a.cargar();
-                    break;
-                case ("3"):
-                    a.añadir();
-                    break;
-                case ("4"):
-                    a.corregir();
-                    break;
-                case ("5"):
-                    a.eliminar();
-                    break;
-                case ("6"):
-                    a.ver();
-                    break;
-                case ("7"):
-                    a.eliminarTodo();
-                case ("8"):
-                    a.guardar();
-                    break;
-                case ("9"):
-                    a.cerrar();
-                    break;
-                default:
-                    System.out.println("si no tiene un cromosoma de mas,por favor seleccione una opcion del menu");
-
+        if (e.getSource().equals(eliminarTodo)) {
+            a.eliminarTodo();
+        }
+        if (e.getSource().equals(añadir)) {
+            String name = nombret.getText();
+            String proy = proyectot.getText();
+            String cod = codigot.getText();
+            if (cod.length()==11){
+               a.añadir(name,cod,proy); 
+            }else{
+                JOptionPane.showMessageDialog(null,"Por favor Ingrese un codigo de 11 digitos");
             }
+            
+            
+        }
+        if (e.getSource().equals(ver)) {
+            a.ver();
+        }
+        if (e.getSource().equals(corregir)) {
+            a.corregir();
+        }
+        if (e.getSource().equals(eliminar)) {
+            a.eliminar();
         }
     }
 }
