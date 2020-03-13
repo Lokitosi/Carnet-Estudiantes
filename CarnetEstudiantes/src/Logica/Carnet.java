@@ -14,6 +14,7 @@ public class Carnet implements Serializable {
     private  String codigo;
     private  String proyecto;
     private  String source;
+    Controlador a = new Controlador();
     // static = atributo de clase y se aplica para todos los objetos
     public boolean confi = true;
     
@@ -66,8 +67,8 @@ public class Carnet implements Serializable {
   
 
     public void visualizar() {  
-        System.out.println("aaaaaaa mi pixchula");
-        Gcarnet prueba = new Gcarnet(this);
+        
+        Gcarnet prueba = new Gcarnet(this,a);
         prueba.setVisible(true);
     }
 

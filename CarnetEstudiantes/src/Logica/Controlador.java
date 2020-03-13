@@ -1,5 +1,6 @@
 package Logica;
 
+import Interfaces.Gcarnet;
 import Interfaces.Gmenu;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,6 +17,20 @@ public class Controlador {
     public String seleccion;
     public int nCarnet;
     final int num = 5;
+    public int vercarne = 0;
+    
+    
+    public int getVercarne(){
+        return vercarne;
+    }
+    public void setVercarne(int vercarne) {
+        this.vercarne = vercarne;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
+    }
+    int posicion = 0;
     public boolean confi = true;
     ArrayList<Carnet> lista = new ArrayList<>();
 //constructor
@@ -24,14 +39,12 @@ public class Controlador {
         Gmenu b = new Gmenu(this);
         b.setVisible(true);
     }
-    
+
 //metodos
+    public void añadir(String nom, String cod, String proy) {
 
+        Carnet a = new Carnet(nom, cod, proy);
 
-    public void añadir(String nom,String cod,String proy) {
-        
-        Carnet a = new Carnet(nom,cod,proy);
-        
         a.getimage();
         JOptionPane.showMessageDialog(null, "El estudiante ha sido añadido exitosamente");
         lista.add(a);
@@ -103,14 +116,21 @@ public class Controlador {
         JOptionPane.showMessageDialog(null, "el carnet ha sido eliminado");
     }
 
-    public void ver() {
-        System.out.println("aaaaa mi pico");
-        System.out.println(lista.size());
-        for (int i = 0; lista.size() > i; i++) {
-
-            lista.get(i).visualizar();
-
+    public void ver(int a) {
+        System.out.println("entro");
+        for (int i = 0; i < lista.size(); i++) {
+           
+            if (i == a ){
+                System.out.println("if:"+a);
+             lista.get(i).visualizar();   
+            }
+            else{
+                System.out.println("else:"+i);
+            }
+            
+            
         }
+
     }
 
     public void eliminarTodo() {
@@ -125,6 +145,7 @@ public class Controlador {
 
     public static void main(String[] args) {
         Controlador a = new Controlador();
+
         a.menu();
     }
 

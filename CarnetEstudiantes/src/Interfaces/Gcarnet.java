@@ -1,26 +1,46 @@
 package Interfaces;
 
 import Logica.Carnet;
+import Logica.Controlador;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Gcarnet extends JFrame {
+public class Gcarnet extends JFrame implements ActionListener {
     //Atributos 
         JLabel foto;
         JLabel titulo;
         JLabel name;
         JLabel codigo;
         JLabel proyecto;
+        JButton anterior;
+        JButton siguiente;
+        Controlador control ;
+        int b = 0;
         
         
-    public Gcarnet(Carnet carnet) {
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+        
+        
+        
+    public Gcarnet(Carnet carnet,Controlador c ) {
+        control = c;
         this.setSize(700,400);
         this.setTitle("Carnet Estudiantil");
         this.setLocationRelativeTo(null);
@@ -62,8 +82,37 @@ public class Gcarnet extends JFrame {
         codigo.setBounds(250,160,400,30);
         codigo.setFont(new Font("arial",Font.BOLD,30));
         contenedor.add(codigo);
+        
+        anterior = new JButton("anterior");
+        anterior.setBounds(0,320,100,20);
+        anterior.addActionListener(this);
+        contenedor.add(anterior);
+        
+        siguiente = new JButton("siguiente");
+        siguiente.setBounds(320,320,100,20);
+        siguiente.addActionListener(this);
+        contenedor.add(siguiente);
               
         
+    }
+   private void cargar(){
+       control.cargar();
+   }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
+        if (e.getSource().equals(anterior)){
+            
+            System.out.println("aaaa");
+            
+        }
+        if (e.getSource()==(siguiente)){ 
+            control.ver(b);
+            b += 1;
+            System.out.println(b);
+            System.out.println("ayuda");
+        }
     }
   
    

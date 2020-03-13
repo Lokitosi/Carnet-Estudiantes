@@ -139,7 +139,7 @@ public class Gmenu extends JFrame implements ActionListener {
             
         }
         if (e.getSource().equals(ver)) {
-            a.ver();
+            a.ver(a.getVercarne());
         }
         if (e.getSource().equals(corregir)) {
             a.corregir();
