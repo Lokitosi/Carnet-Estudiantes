@@ -1,6 +1,6 @@
 package Logica;
-
-import Interfaces.Gcarnet;
+import Logica.Carnet;
+import Interfaces.GUI;
 import Interfaces.Gmenu;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,11 +18,25 @@ public class Controlador {
     public int nCarnet;
     final int num = 5;
     public int vercarne = 0;
-    
-    
-    public int getVercarne(){
+    Controlador control;
+    int posicion = 0;
+    public boolean confi = true;
+    Carnet ab = new Carnet(null, null, null);
+    ArrayList<Carnet> lista = new ArrayList<>();
+    int cantidad = lista.size();
+
+    public int getVercarne() {
         return vercarne;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
     public void setVercarne(int vercarne) {
         this.vercarne = vercarne;
     }
@@ -30,11 +44,8 @@ public class Controlador {
     public void setPosicion(int posicion) {
         this.posicion = posicion;
     }
-    int posicion = 0;
-    public boolean confi = true;
-    ArrayList<Carnet> lista = new ArrayList<>();
-//constructor
 
+//constructor
     public void menu() {
         Gmenu b = new Gmenu(this);
         b.setVisible(true);
@@ -42,7 +53,6 @@ public class Controlador {
 
 //metodos
     public void añadir(String nom, String cod, String proy) {
-
         Carnet a = new Carnet(nom, cod, proy);
 
         a.getimage();
@@ -117,20 +127,9 @@ public class Controlador {
     }
 
     public void ver(int a) {
-        System.out.println("entro");
-        for (int i = 0; i < lista.size(); i++) {
-           
-            if (i == a ){
-                System.out.println("if:"+a);
-             lista.get(i).visualizar();   
-            }
-            else{
-                System.out.println("else:"+i);
-            }
-            
-            
-        }
-
+        cantidad = lista.size();
+        lista.get(a).visualizar(this);
+      
     }
 
     public void eliminarTodo() {

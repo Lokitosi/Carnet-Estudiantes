@@ -1,7 +1,8 @@
 package Logica;
 
 
-import Interfaces.Gcarnet;
+import Interfaces.GUI;
+import Logica.Controlador;
 import java.io.File;
 import java.io.Serializable;
 import javax.swing.JFileChooser;
@@ -14,7 +15,8 @@ public class Carnet implements Serializable {
     private  String codigo;
     private  String proyecto;
     private  String source;
-    Controlador a = new Controlador();
+    int posicion = 0;
+  
     // static = atributo de clase y se aplica para todos los objetos
     public boolean confi = true;
     
@@ -24,10 +26,17 @@ public class Carnet implements Serializable {
         this.codigo = cod;
         this.proyecto = proy;
     }
-
-  
-
+    
+   
     //metodos
+     public int getSite() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {    
+        this.posicion = posicion;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -66,9 +75,9 @@ public class Carnet implements Serializable {
 
   
 
-    public void visualizar() {  
+    public void visualizar(Controlador a) {  
         
-        Gcarnet prueba = new Gcarnet(this,a);
+        GUI prueba = new GUI(this,a);
         prueba.setVisible(true);
     }
 
@@ -79,5 +88,6 @@ public class Carnet implements Serializable {
         File foto = archivo.getSelectedFile();
         source = foto.getPath();
     }
+
 
 }

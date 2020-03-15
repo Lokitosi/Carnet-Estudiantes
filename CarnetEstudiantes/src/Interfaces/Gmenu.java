@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Logica.Carnet;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ public class Gmenu extends JFrame implements ActionListener {
     JButton ver = new JButton("Ver carnet");
     JButton corregir = new JButton("Corregir");
     JButton eliminar = new JButton("Eliminar");
+    
 
     //textfields
     JTextField nombret = new JTextField();
@@ -31,9 +33,10 @@ public class Gmenu extends JFrame implements ActionListener {
     JTextField proyectot = new JTextField();
 
     // otras cosas 
-    Controlador a = new Controlador();
+    Controlador a ;
 
     public Gmenu(Controlador b) {
+        a=b;
         this.setBounds(0, 0, 750, 450);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -139,7 +142,7 @@ public class Gmenu extends JFrame implements ActionListener {
             
         }
         if (e.getSource().equals(ver)) {
-            a.ver(a.getVercarne());
+            a.ver(0);
         }
         if (e.getSource().equals(corregir)) {
             a.corregir();
